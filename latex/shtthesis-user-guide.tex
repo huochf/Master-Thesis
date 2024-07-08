@@ -1,0 +1,224 @@
+% shtthesis, an unofficial LaTeX thesis template for ShanghaiTech University.
+% Copyright (C) 2022 Li Rundong <rundong.001@gmail.com>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+% graduate setup
+% \documentclass[master, anonymous]{shtthesis}
+\documentclass[master]{shtthesis}
+\shtsetup{
+  degree-name = {工学硕士},
+  degree-name* = {Master~of~Science~in~Engineering},
+  % secret-level = {白给},
+  title = {三维环境中人和物体单目重建},
+  title* = {3D Monocular Human-Object Reconstruction},
+  keywords = {人-物交互，空间关系，单目重建，归一化流，三视视觉},
+  keywords* = {Human-Object Interaction, Spatial Relation, Monocular Reconstruction, Normalizing Flow, 3D Vision},
+  author = {霍超凡},
+  author* = {Huo~Chaofan},
+  institution = {上海科技大学信息科学与技术学院},
+  institution* = {School~of~Information~Science~and~Technology\\%
+                  ShanghaiTech~University},
+  supervisor = {汪婧雅~助理教授},
+  supervisor* = {Professor~Wang~Jingya},
+  supervisor-institution = {上海科技大学信息科学与技术学院},
+  discipline-level-1 = {计算机科学与技术},
+  discipline-level-1* = {Computer~Science~and~Technology},
+  bib-resource = {Biblio/ref.bib},
+}
+
+% `latex' and `shell' environments are adapted from `thuthesis'
+\usepackage{listings}
+\usepackage{amsthm}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{pifont}
+\usepackage{bm}
+\usepackage{color}
+\usepackage{booktabs}
+\usepackage{bbding}
+\usepackage{algorithm}  
+\usepackage{algorithmicx} %或者\usepackage{algorithmic}
+\usepackage{algpseudocode}
+\newcommand\prompt{\textup{\$}}
+\lstdefinestyle{lstStyleBase}{%
+  basicstyle=\small\ttfamily,
+  aboveskip=\medskipamount,
+  belowskip=\medskipamount,
+  lineskip=0pt,
+  boxpos=c,
+  showlines=false,
+  extendedchars=true,
+  upquote=true,
+  tabsize=2,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  numbers=none,
+  linewidth=\linewidth,
+  xleftmargin=4pt,
+  xrightmargin=0pt,
+  resetmargins=false,
+  breaklines=true,
+  breakatwhitespace=false,
+  breakindent=0pt,
+  breakautoindent=true,
+  columns=flexible,
+  keepspaces=true,
+  gobble=0,
+  framesep=3pt,
+  rulesep=1pt,
+  framerule=1pt,
+  frame=l,
+  rulecolor=\color{ShtRed},
+  backgroundcolor=\color{gray!5},
+  stringstyle=\color{green!40!black!100},
+  keywordstyle=\bfseries\color{blue!50!black},
+  commentstyle=\slshape\color{black!60},
+  escapeinside={`'},
+}
+\lstdefinestyle{lstStyleShell}{%
+  style=lstStyleBase,
+  language=bash}
+\lstdefinestyle{lstStyleLaTeX}{%
+  style=lstStyleBase,
+  language=[LaTeX]TeX}
+\lstnewenvironment{latex}{\lstset{style=lstStyleLaTeX}}{}
+\lstnewenvironment{shell}{\lstset{style=lstStyleShell}}{}
+
+\usepackage{hologo}
+\ifluahbtex
+  \usepackage{emoji}
+\else
+  \providecommand{\emoji}[1]{ \fbox{\emph{#1}} }
+\fi
+
+\usepackage{subcaption}
+\usepackage{ctable}
+\usepackage[list=off]{bicaption}
+\captionsetup[figure][bi-second]{name=Figure}
+\captionsetup[table][bi-second]{name=Table}
+
+\makeatletter
+  \def\ifundergraduate{\ifsht@undergraduate}
+  \def\ifgraduate{\ifsht@graduate}
+\makeatother
+
+\begin{document}
+
+\maketitle
+
+\frontmatter
+\input{chapters/abstract}
+
+\makeindices
+
+% \ifgraduate
+% \begin{nomenclatures}
+%   \header[单位]{符号}{说明}
+%   \item[$\symup{{m^{2} \cdot s^{-2} \cdot K^{-1}}}$]{$R$}{the gas constant}
+%   \item[$\symup{{m^{2} \cdot s^{-2} \cdot K^{-1}}}$]{$C_v$}{specific heat capacity at constant volume}
+%   \item[$\symup{{m^{2} \cdot s^{-2} \cdot K^{-1}}}$]{$C_p$}{specific heat capacity at constant pressure}
+%   \item[$\symup{{m^{2} \cdot s^{-2}}}$]{$E$}{specific total energy}
+%   \item[$\symup{{kg \cdot m \cdot s^{-3} \cdot K^{-1}}}$]{$k$}{thermal conductivity}
+%   \item[$\symup{{kg \cdot m^{-1} \cdot s^{-2}}}$]{$S_{ij}$}{deviatoric stress tensor}
+%   \item[$\symup{{kg \cdot m^{-1} \cdot s^{-2}}}$]{$\tau_{ij}$}{viscous stress tensor}
+%   \item[$\symup{{1}}$]{$\delta_{ij}$}{Kronecker tensor}
+% \end{nomenclatures}
+
+% \begin{nomenclatures}[缩写]
+%   \header{缩写}{全称}
+%   \item{CFD}{Computational Fluid Dynamics}
+%   \item{CFL}{Courant-Friedrichs-Lewy}
+%   \item{WENO}{Weighted Essentially Non-oscillatory}
+%   \item{ZND}{Zel'dovich-von Neumann-Doering}
+% \end{nomenclatures}
+
+% \begin{nomenclatures}[算子 \& 说明]
+%   \item{$\Delta$}{difference}
+%   \item{$\nabla$}{gradient operator}
+%   \item{$\delta^{\pm}$}{upwind-biased interpolation scheme}
+% \end{nomenclatures}
+% \fi
+
+\mainmatter
+
+\input{chapters/Chap_01_Intro}
+\input{chapters/Chap_02_stackflow}
+\input{chapters/Chap_03_stackflow_plus}
+\input{chapters/Chap_04_super_2d}
+\input{chapters/Chap_05_summary}
+
+\makebiblio
+
+\backmatter
+\begin{acknowledgement}
+在论文写作过程中，得到了许多人的帮助和支持，我在此要向他们表示由衷的感谢。首先，我要感谢我的导师汪婧雅教授，在整个研究过程中给予我耐心的指导和宝贵的建议，让我能够顺利完成毕业论文的撰写。
+
+再次，我要感谢实验室的老师和同学们，他们在我遇到困难时给予了无私的帮助和支持，让我能够顺利完成实验和数据分析。同时，我也要感谢论文评阅老师和答辩委员会的专家们，他们的审阅和指导使我对自己的研究有了更深刻的认识。
+
+最后，我要感谢我的家人和朋友们，在我研究生期间给予了我精神上的支持和鼓励，让我能够坚持下来并顺利完成学业。他们的陪伴和支持是我前进的动力和力量。
+
+再次谨向以上所有给予我支持和帮助的人表示由衷的感谢！没有你们的支持，我的论文也不可能如此顺利完成。希望以后继续保持联系，共同进步！
+\end{acknowledgement}
+
+\ifgraduate
+\begin{resume}
+    \paragraph{姓名：} 霍超凡。
+    \paragraph{教育经历：}
+    \begin{itemize}
+        \item 2017年-2021年，本科就读于山东大学的软件工程专业，获得学士学位。
+        \item 2021年-2024年，硕士就读于上海科技大学的计算机科学与技术专业，获得硕士学位。
+    \end{itemize}
+
+    \paragraph{研究方向：}
+    \begin{itemize}
+        \item 2021年-2024年，三维空间中人和物体交互重建。
+        \item 2024年-？，三维场景重建与编辑。
+    \end{itemize}
+    \paragraph{联系方式：}
+    \begin{description}
+        \item[电子邮箱：] huochf@shanghaitech.edu.cn
+        \item[联系电话：] 18633656293
+    \end{description}
+\end{resume}
+
+\begin{publications}
+  \begin{description}
+    \item[(已发表)] [一作] \textbf{Chaofan Huo}, Ye Shi, Yuexin Ma, Lan Xu, Jingyi Yu, Jingya Wang. StackFLOW: Monocular Human-Object Reconstruction by Stacked Normalizing Flow with Offset. In Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence, {IJCAI-23}.
+    \item[(已投递)] [一作] \textbf{Chaofan Huo}, Ye Shi, Jingya Wang. Monocular Human-Object Reconstruction in the Wild. In ACM MultiMedia 2024.
+  \end{description}
+\end{publications}
+
+\begin{publications*}
+  \begin{description}
+    \item[(已发表)] [一作] ***, ***, ***, ***, ***. ***. In Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence, {IJCAI-23}.
+    \item[(已投递)] [一作] ***, ***, ***. ***. In ACM MultiMedia 2024.
+  \end{description}
+\end{publications*}
+
+% \begin{patents}
+%   专利申请或授权记录…… （非匿名环境）
+% \end{patents}
+
+% \begin{patents*}
+%   专利申请或授权记录…… （匿名环境）
+% \end{patents*}
+
+% \begin{projects}
+%   个人参与的科研项目、获奖情况…… （仅非匿名环境显示）
+% \end{projects}
+\fi
+
+\end{document}

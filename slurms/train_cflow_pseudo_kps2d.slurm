@@ -1,0 +1,50 @@
+#!/bin/bash
+#SBATCH -J cflow_5behave
+#SBATCH -p ShangHAI
+#SBATCH -A wangjingya-ShangHAI
+# SBATCH --cpus-per-task=10
+#SBATCH --ntasks-per-node=10
+#SBATCH --mem-per-cpu=4890MB
+#SBATCH -N 1
+#SBATCH --gres=gpu:1
+# #SBATCH --nodelist=ai_gpu13
+#SBATCH -t 05-00:00:00
+#SBATCH --output=/inspurfs/group/wangjingya/huochf/Thesis/logs/train_cflow_pseudo_kps2d5.log
+#SBATCH --error=/inspurfs/group/wangjingya/huochf/Thesis/logs/train_cflow_pseudo_kps2d5.log
+
+# export CUDA_HOME=/public/software/CUDA/cuda-10.2/
+
+# source activate
+# conda activate bigdet
+
+cd /inspurfs/group/wangjingya/huochf/Thesis/
+# 1
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object backpack --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object boxlarge --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object boxlong --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+
+# 2
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object boxmedium --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object boxsmall --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object boxtiny --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+
+# 3
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object chairblack --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object chairwood --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object monitor --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+
+# 4
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object plasticcontainer --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object stool --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object suitcase --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+
+# # 5
+python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object tablesmall --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object tablesquare --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object toolbox --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+
+# # 6
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object trashbin --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object yogaball --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# python -m hoi_recon.train_c_flow_pseudo_kps2d --epoch 30 --object yogamat --dropout_probability 0.5 --batch_size 16 --save_dir ./outputs/cflow_pseudo_kps2d
+# NVIDIAGeForceRTX2080Ti NVIDIATITANV
